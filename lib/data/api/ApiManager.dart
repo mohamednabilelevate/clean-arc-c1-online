@@ -1,12 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_c1_online/data/api/ApiConstants.dart';
 import 'package:online_exam_c1_online/data/api/model/UserDto.dart';
 import 'package:online_exam_c1_online/data/api/model/request/RegisterRequest.dart';
 import 'package:online_exam_c1_online/data/api/model/response/AuthResponse.dart';
-import 'package:online_exam_c1_online/domain/common/ApiResult.dart';
-import 'package:online_exam_c1_online/domain/common/CustomExceptions.dart';
-import 'package:online_exam_c1_online/domain/model/User.dart';
+
 
 @lazySingleton
 class ApiManager{
@@ -15,6 +14,15 @@ class ApiManager{
   ApiManager(){
     _dio = Dio(BaseOptions(
       baseUrl: ApiConstants.baseUrl
+    ));
+    _dio.interceptors.add(LogInterceptor(
+      responseHeader: true,
+      requestHeader: true,
+      responseBody: true,
+      requestBody: true,
+      logPrint: (object) {
+        debugPrint("Api -> $object");
+      },
     ));
   }
   // static ApiManager? _apiManager;
