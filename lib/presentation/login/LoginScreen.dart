@@ -111,7 +111,7 @@ class LoginScreen extends StatelessWidget {
   }
 
   void login() {
-    viewModel.add(LoginEvent("nabil@elevate.com", "123456"));
-    viewModel.add(AddProductToCartEvent(10));
+    viewModel.doIntent(LoginIntent("nabil@elevate.com", "123456"));
+    viewModel.doIntent(AddProductToCartInent(10));
   }
 }
