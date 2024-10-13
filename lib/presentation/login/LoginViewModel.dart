@@ -15,6 +15,7 @@ class LoginViewModel extends Cubit<LoginScreenState>{
 
       case LoginIntent():_login(intent);
       case AddProductToCartInent():_addProductToCart(intent);
+      case RemoveProductFromCartIntent():{}
     }
   }
   void _login(LoginIntent intent) async{
@@ -32,16 +33,9 @@ class LoginViewModel extends Cubit<LoginScreenState>{
       }
     }
   }
-  void _loadCategories(){}
-  void _loadOffers(){}
-  void _occasions(){}
   void _addProductToCart(AddProductToCartInent intent ){
     //
   }
-  void _addProductToWishList(){
-
-  }
-
 }
 sealed class LoginScreenIntent{}
 class LoginIntent extends LoginScreenIntent{
@@ -53,6 +47,10 @@ class AddProductToCartInent extends LoginScreenIntent{
   int productId;
   AddProductToCartInent(this.productId);
 }
+class RemoveProductFromCartIntent extends LoginScreenIntent{
+  int productId;
+  RemoveProductFromCartIntent(this.productId);
+}
 
 sealed class LoginScreenState{}
 class InitialState extends LoginScreenState{}
@@ -61,6 +59,7 @@ class ErrorState extends LoginScreenState{
   Exception? exception;
   ErrorState(this.exception);
 }
+
 class SuccessState extends LoginScreenState{
   User? user;
   SuccessState(this.user);
