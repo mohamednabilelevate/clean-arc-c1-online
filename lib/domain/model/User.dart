@@ -25,4 +25,23 @@ class User {
   String? phone;
   bool? isVerified;
   String? token;
+
+  @override
+  bool operator ==(Object other) {
+    if(other is User){
+      // other is of type user
+      if(id != other.id){
+        return false;
+      }
+      if(token != other.token){
+        return false;
+      }
+      if(email != other.email){
+        return false;
+      }
+      return true;
+    }
+    return false;
+  }
+
 }
