@@ -1,3 +1,5 @@
+import 'package:equatable/equatable.dart';
+
 /// id : "6702ad39e77d68595a291e8b"
 /// username : "elevate123"
 /// firstName : "Elevate"
@@ -6,7 +8,7 @@
 /// phone : "01094155711"
 /// isVerified : false
 
-class User {
+class User extends Equatable{
   User({
     this.id,
     this.username,
@@ -27,21 +29,6 @@ class User {
   String? token;
 
   @override
-  bool operator ==(Object other) {
-    if(other is User){
-      // other is of type user
-      if(id != other.id){
-        return false;
-      }
-      if(token != other.token){
-        return false;
-      }
-      if(email != other.email){
-        return false;
-      }
-      return true;
-    }
-    return false;
-  }
-
+  // TODO: implement props
+  List<Object?> get props => [id,username];
 }
