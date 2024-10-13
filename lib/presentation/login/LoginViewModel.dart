@@ -4,24 +4,25 @@ import 'package:online_exam_c1_online/domain/common/ApiResult.dart';
 import 'package:online_exam_c1_online/domain/model/User.dart';
 import 'package:online_exam_c1_online/domain/usecase/LoginUsecase.dart';
 
-@injectable
-class LoginViewModel extends Cubit<LoginScreenState>{
-  LoginUseCase loginCase;
-  //                        start state
-  LoginViewModel(this.loginCase):super(InitialState());
+  @injectable
+  class LoginViewModel extends Cubit<LoginScreenState>{
+    LoginUseCase loginCase;
+    //                        start state
+    LoginViewModel(this.loginCase):super(InitialState());
 
-  void doIntent(LoginScreenIntent intent){
-    switch (intent) {
+    void doIntent(LoginScreenIntent intent){
+      switch (intent) {
 
       case LoginIntent():_login(intent);
       case AddProductToCartInent():_addProductToCart(intent);
+      case RemoveProductFromCartIntent():{}
+      }
     }
-  }
-  void _login(LoginIntent intent) async{
-    emit(LoadingState());
+    void _login(LoginIntent intent) async{
+      emit(LoadingState());
 
-    var result = await loginCase.invoke(intent.email,
-        intent.password);
+      var result = await loginCase.invoke(intent.email,
+          intent.password);
     switch (result) {
 
       case Success<User?>():{
@@ -32,16 +33,9 @@ class LoginViewModel extends Cubit<LoginScreenState>{
       }
     }
   }
-  void _loadCategories(){}
-  void _loadOffers(){}
-  void _occasions(){}
   void _addProductToCart(AddProductToCartInent intent ){
     //
   }
-  void _addProductToWishList(){
-
-  }
-
 }
 sealed class LoginScreenIntent{}
 class LoginIntent extends LoginScreenIntent{
@@ -53,6 +47,10 @@ class AddProductToCartInent extends LoginScreenIntent{
   int productId;
   AddProductToCartInent(this.productId);
 }
+class RemoveProductFromCartIntent extends LoginScreenIntent{
+  int productId;
+  RemoveProductFromCartIntent(this.productId);
+}
 
 sealed class LoginScreenState{}
 class InitialState extends LoginScreenState{}
@@ -61,6 +59,7 @@ class ErrorState extends LoginScreenState{
   Exception? exception;
   ErrorState(this.exception);
 }
+
 class SuccessState extends LoginScreenState{
   User? user;
   SuccessState(this.user);
