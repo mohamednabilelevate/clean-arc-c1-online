@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:online_exam_c1_online/data/contracts/auth/AuthOfflineDataSource.dart';
 import 'package:online_exam_c1_online/data/contracts/auth/AuthOnlineDataSource.dart';
@@ -20,12 +21,15 @@ class AuthRepoImpl implements AuthRepository{
   }
 
   @override
-  Future<Result<User?>> register(String username, String firstName,
+  Future<Result<User?>> register(
+      String username,
+      String firstName,
       String lastName,
       String email, String password,
       String rePassword, String phone) {
 
-    throw UnimplementedError();
+    return onlineDatasource.register(username, firstName, lastName, email,
+        password, rePassword, phone);
   }
 
 }
