@@ -10,16 +10,16 @@ import 'package:online_exam_c1_online/domain/usecase/LoginUsecase.dart';
     //                        start state
     LoginViewModel(this.loginCase):super(InitialState());
 
-    void doIntent(LoginScreenIntent intent){
-      switch (intent) {
+  Future<void> doIntent(LoginScreenIntent intent)async{
+    switch (intent) {
 
-      case LoginIntent():_login(intent);
+      case LoginIntent():await _login(intent);
       case AddProductToCartInent():_addProductToCart(intent);
       case RemoveProductFromCartIntent():{}
-      }
     }
-    void _login(LoginIntent intent) async{
-      emit(LoadingState());
+  }
+  Future<void> _login(LoginIntent intent) async{
+    emit(LoadingState());
 
       var result = await loginCase.invoke(intent.email,
           intent.password);

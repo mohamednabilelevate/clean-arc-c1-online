@@ -12,3 +12,14 @@ class LoginUseCase{
     return authRepository.login(email, password);
   }
 }
+
+// 1- Single Responsibility
+// 2- DI
+
+// 1- future changes
+// 2- less bugy code
+// 3- easy to Test
+// 4- fast
+
+// TDD
+// write test cases for each function

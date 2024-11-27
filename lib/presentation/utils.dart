@@ -1,6 +1,14 @@
 import 'package:online_exam_c1_online/domain/common/CustomExceptions.dart';
 
 String extractErrorMessage(Exception? exception){
+  switch (exception) {
+    case NetworkException():{
+      var statusCode = exception.statusCode;
+      if (statusCode == 401){
+        message = transtlatableMessage;
+      }
+    }
+  }
   var message = "something went wrong";
   if(exception is NoInternetError){
     message = "please check internet connection";
