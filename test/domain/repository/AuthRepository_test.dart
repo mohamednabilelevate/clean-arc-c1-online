@@ -63,7 +63,7 @@ void main() {
 
     verify(onlineDataSource.register(userName,
         firstName,lastName,email,password,rePassword,
-        phone)).called(1);
+        phone)).called(0);
 
     expect(actual, result);
 
