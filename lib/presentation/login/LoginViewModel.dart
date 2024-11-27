@@ -4,11 +4,11 @@ import 'package:online_exam_c1_online/domain/common/ApiResult.dart';
 import 'package:online_exam_c1_online/domain/model/User.dart';
 import 'package:online_exam_c1_online/domain/usecase/LoginUsecase.dart';
 
-@injectable
-class LoginViewModel extends Cubit<LoginScreenState>{
-  LoginUseCase loginCase;
-  //                        start state
-  LoginViewModel(this.loginCase):super(InitialState());
+  @injectable
+  class LoginViewModel extends Cubit<LoginScreenState>{
+    LoginUseCase loginCase;
+    //                        start state
+    LoginViewModel(this.loginCase):super(InitialState());
 
   Future<void> doIntent(LoginScreenIntent intent)async{
     switch (intent) {
@@ -21,8 +21,8 @@ class LoginViewModel extends Cubit<LoginScreenState>{
   Future<void> _login(LoginIntent intent) async{
     emit(LoadingState());
 
-    var result = await loginCase.invoke(intent.email,
-        intent.password);
+      var result = await loginCase.invoke(intent.email,
+          intent.password);
     switch (result) {
 
       case Success<User?>():{
